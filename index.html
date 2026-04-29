@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwritten Text Scanner - OCR Converter</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📝 Handwritten Text Scanner</h1>
+            <p>Capture and convert handwritten text to digital format</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Camera Section -->
+            <section class="camera-section">
+                <h2>Camera Capture</h2>
+                <div class="camera-container">
+                    <video id="video" class="camera-feed" autoplay playsinline></video>
+                    <canvas id="canvas" class="canvas-hidden"></canvas>
+                </div>
+                <div class="button-group">
+                    <button id="startCameraBtn" class="btn btn-primary">
+                        <span>🎥 Start Camera</span>
+                    </button>
+                    <button id="stopCameraBtn" class="btn btn-secondary" disabled>
+                        <span>⏹️ Stop Camera</span>
+                    </button>
+                    <button id="captureBtn" class="btn btn-success" disabled>
+                        <span>📸 Capture Image</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Image Preview and Upload Section -->
+            <section class="image-section">
+                <h2>Image Input</h2>
+                <div class="image-upload">
+                    <input type="file" id="imageInput" accept="image/*" class="file-input">
+                    <label for="imageInput" class="file-label">
+                        <span>📤 Choose Image or Paste Screenshot</span>
+                    </label>
+                </div>
+                <div id="previewContainer" class="preview-container">
+                    <img id="preview" class="preview-image" alt="Preview">
+                </div>
+            </section>
+
+            <!-- Processing Section -->
+            <section class="processing-section">
+                <h2>Text Recognition</h2>
+                <div class="processing-controls">
+                    <button id="recognizeBtn" class="btn btn-primary" disabled>
+                        <span>🔍 Recognize Text</span>
+                    </button>
+                    <button id="clearBtn" class="btn btn-secondary">
+                        <span>🗑️ Clear</span>
+                    </button>
+                </div>
+                <div id="loadingIndicator" class="loading-hidden">
+                    <div class="spinner"></div>
+                    <p>Processing image... Please wait</p>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <h2>Recognized Text</h2>
+                <div class="results-container">
+                    <textarea id="textOutput" class="text-output" placeholder="Recognized text will appear here..." readonly></textarea>
+                </div>
+                <div class="results-actions">
+                    <button id="copyBtn" class="btn btn-info" disabled>
+                        <span>📋 Copy Text</span>
+                    </button>
+                    <button id="downloadBtn" class="btn btn-info" disabled>
+                        <span>💾 Download Text</span>
+                    </button>
+                    <button id="editBtn" class="btn btn-warning" disabled>
+                        <span>✏️ Edit Text</span>
+                    </button>
+                </div>
+                <div id="confidence" class="confidence-info"></div>
+            </section>
+        </main>
+
+        <!-- Hidden textarea for editing -->
+        <div id="editModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Edit Recognized Text</h3>
+                <textarea id="editTextarea" class="edit-textarea"></textarea>
+                <div class="modal-actions">
+                    <button id="saveEditBtn" class="btn btn-success">Save</button>
+                    <button id="cancelEditBtn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2024 Handwritten Text Scanner | Powered by Tesseract.js OCR</p>
+        </footer>
+    </div>
+
+    <!-- Tesseract.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.0.0/dist/tesseract.min.js"></script>
+    <!-- Application Script -->
+    <script src="js/app.js"></script>
+</body>
+</html>
